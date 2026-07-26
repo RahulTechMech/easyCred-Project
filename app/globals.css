@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================
+   Theme tokens (RGB triplets so Tailwind's <alpha-value> works)
+   Dark is the default palette (no class needed); ".light" on
+   <html> overrides every token for light mode.
+   ========================================================== */
+:root {
+  --ink-950: 5 7 13;
+  --ink-900: 10 14 26;
+  --ink-800: 17 22 39;
+  --ink-700: 26 32 54;
+  --ink-600: 37 44 71;
+
+  --frost-50: 248 250 252;
+  --frost-200: 203 213 225;
+  --frost-400: 148 163 184;
+
+  --signal-500: 59 108 246;
+  --signal-400: 91 139 255;
+  --signal-300: 143 176 255;
+
+  --mint-500: 24 198 143;
+  --amber-500: 245 165 36;
+
+  --hairline: 255 255 255;
+
+  --glass-from: rgba(255, 255, 255, 0.05);
+  --glass-to: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html.light {
+  --ink-950: 244 247 252;
+  --ink-900: 255 255 255;
+  --ink-800: 241 245 249;
+  --ink-700: 226 232 240;
+  --ink-600: 203 213 225;
+
+  --frost-50: 15 23 42;
+  --frost-200: 51 65 85;
+  --frost-400: 100 116 139;
+
+  --signal-500: 37 84 220;
+  --signal-400: 59 108 246;
+  --signal-300: 47 91 214;
+
+  --hairline: 15 23 42;
+
+  --glass-from: rgba(15, 23, 42, 0.04);
+  --glass-to: rgba(15, 23, 42, 0.015);
+  --glass-border: rgba(15, 23, 42, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--ink-950));
+  color: rgb(var(--frost-50));
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Glassmorphic panel used across the form + marketing site */
+.glass-panel {
+  background: linear-gradient(180deg, var(--glass-from), var(--glass-to));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--signal-400));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 999px;
+}
+
+/* Utility for hairline dividers that adapt with theme */
+.divider-hairline {
+  border-color: rgb(var(--hairline) / 0.1);
+}
